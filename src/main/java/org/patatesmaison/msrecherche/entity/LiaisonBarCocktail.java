@@ -19,4 +19,10 @@ public class LiaisonBarCocktail {
 
     @Id
     private Integer cocktailId;
+
+    public LiaisonBarCocktail(Integer barId, Integer cocktailId)
+    {
+        this.barId = barId;
+        this.cocktailId = cocktailId;
+    }
 }
