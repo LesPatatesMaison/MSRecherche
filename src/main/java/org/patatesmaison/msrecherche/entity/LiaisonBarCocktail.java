@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Setter
 public class LiaisonBarCocktail {
     @Id
-    private Long barId;
+    private Integer barId;
 
     @Id
-    private Long cocktailId;
+    private Integer cocktailId;
 }
