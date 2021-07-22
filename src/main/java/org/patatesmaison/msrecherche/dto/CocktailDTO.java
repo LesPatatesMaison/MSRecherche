@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CocktailDTO {
-    private int idDrink;
+    private Long idDrink;
     private String strDrink;
     private String strInstructionsFR;
     private String strDrinkThumb;

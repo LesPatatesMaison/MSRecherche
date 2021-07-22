@@ -32,23 +32,28 @@ public class ConcentrateurApiClient {
     @Value("${concentrateur.url.cocktail}")
     private String routeCocktail;
 
+    // pour mémoire parcequ'elle était cool
     public <T> T call(String endpoint, Class<T> objectClass) {
         return this.restTemplate.getForObject(resourceBaseUrl + endpoint, objectClass);
     }
 
     public BarDTO getBarById(Long barId) {
-        return this.restTemplate.getForObject(barIdUlr, BarDTO.class);
+        return this.restTemplate.getForObject(String.format("%s/%d", barIdUlr, barId), BarDTO.class);
     }
 
     public List<BarDTO> findBarByName(String barName) {
         BarDTO[] barDTOArray = this.restTemplate.getForObject(String.format("%s?%s", barSearchUlr, barName), BarDTO[].class);
-
         return barDTOArray == null ? new ArrayList<>() : Arrays.asList(barDTOArray);
     }
 
     public List<BarDTO> getBarList() {
         BarDTO[] barDTOArray = this.restTemplate.getForObject(barListUlr, BarDTO[].class);
         return barDTOArray == null ? new ArrayList<>() : Arrays.asList(barDTOArray);
+    }
+
+    public List<CocktailDTO> findCocktailsByName(String cocktailName) {
+        CocktailDTO[] cocktailDTOArray = this.restTemplate.getForObject(String.format("%s/%s", routeCocktail, cocktailName), CocktailDTO[].class);
+        return cocktailDTOArray == null ? new ArrayList<>() : Arrays.asList(cocktailDTOArray);
     }
 
 }

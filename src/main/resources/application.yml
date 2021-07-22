@@ -12,9 +12,3 @@ concentrateur:
     base: http://localhost:8020
     bar: ${concentrateur.url.base}/etablissement
     cocktail: ${concentrateur.url.base}/cocktail
-
-messages:
-  bar:
-    not-found : "Aucun bar correspondant à votre rechcerche"
-  cocktail:
-    not-found : "Aucun cocktail correspondant à votre rechcerche"
