@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface LiaisonBarCocktailRepository extends JpaRepository<LiaisonBarCocktail, Integer> {
     List<LiaisonBarCocktail> findByCocktailId(int cocktailId);
 
-    @Query("SELECT bc FROM LiaisonBarCocktail bc WHERE bc.cocktailId IN (?1)")
+    @Query("SELECT DISTINCT bc.barId FROM LiaisonBarCocktail bc WHERE bc.cocktailId IN (?1)")
     List<LiaisonBarCocktail> findByCocktailIds(Integer[] cocktailIds);
 }

@@ -38,8 +38,7 @@ public class BarCocktailService {
        Integer[] cocktailIds = cocktailDTOList.stream().map(CocktailDTO::getIdDrink).toArray(Integer[]::new);
        List<LiaisonBarCocktail> barCocktail = barCocktailRepository.findByCocktailIds(cocktailIds);
        for(int j = 0; j < barCocktail.size(); j++) {
-           BarDTO bar = new BarDTO();
-           bar.setBarId(barCocktail.get(j).getBarId());
+           BarDTO bar = concentrateurApiClient.call("/etablissement/" + barCocktail.get(j).getBarId(), BarDTO.class);
            barDTOList.add(bar);
        }
        return barDTOList;
