@@ -20,4 +20,12 @@ public class BarService {
         return concentrateurApiClient.getBarList();
     }
 
+    public BarDTO getBarById(Long id) throws APIException {
+        return concentrateurApiClient.getBarById(id);
+    }
+
+    public List<BarDTO> findBarByName(String barName) throws APIException {
+        return concentrateurApiClient.findBarByName(barName);
+    }
+
 }
