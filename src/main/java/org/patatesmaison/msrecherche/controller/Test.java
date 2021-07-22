@@ -2,6 +2,7 @@ package org.patatesmaison.msrecherche.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.patatesmaison.msrecherche.dto.BarDTO;
 import org.patatesmaison.msrecherche.dto.CocktailDTO;
 import org.patatesmaison.msrecherche.exception.APIException;
 import org.patatesmaison.msrecherche.exception.ErrorMessage;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,9 +34,9 @@ public class Test {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public List<CocktailDTO> test() {
+    public ArrayList<BarDTO> test() {
         log.warn("-------------- Test Recherche OK");
-        return barCocktailService.testAPI();
+        return barCocktailService.getBarByCocktailName("margarita");
     }
 
 

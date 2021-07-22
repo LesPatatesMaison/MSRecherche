@@ -17,7 +17,7 @@ public class ConcentrateurApiClient {
     @Value("${resource-base-url}")
     private String resourceBaseUrl;
 
-    public <T> ResponseEntity<T> call(String endpoint, Class objectClass) {
-        return this.restTemplate.getForEntity(resourceBaseUrl + endpoint, objectClass);
+    public <T> T call(String endpoint, Class<T> objectClass) {
+        return this.restTemplate.getForObject(resourceBaseUrl + endpoint, objectClass);
     }
 }
