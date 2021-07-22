@@ -1,16 +1,18 @@
 package org.patatesmaison.msrecherche.service;
 
 import org.patatesmaison.msrecherche.client.ConcentrateurApiClient;
+import org.patatesmaison.msrecherche.dao.LiaisonBarCocktailRepository;
 import org.patatesmaison.msrecherche.dto.BarDTO;
 import org.patatesmaison.msrecherche.dto.CocktailDTO;
+import org.patatesmaison.msrecherche.entity.LiaisonBarCocktail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 @Service
 public class BarCocktailService {
@@ -26,19 +28,27 @@ public class BarCocktailService {
     @Autowired
     private ConcentrateurApiClient concentrateurApiClient;
 
+    @Autowired
+    private LiaisonBarCocktailRepository barCocktailRepository;
+
    public ArrayList<BarDTO> getBarByCocktailName(String cocktailName) {
-       List<CocktailDTO> cocktailDTOList = this.getCocktailsIdByName(cocktailName);
-       for(int i = 0; i < cocktailDTOList.size(); i++) {
-           //cocktailId = cocktailDTOList.get(i).getIdDrink();
+       ArrayList<BarDTO> barDTOList = new ArrayList<>();
+
+       List<CocktailDTO> cocktailDTOList = this.getCocktailsByName(cocktailName);
+       Integer[] cocktailIds = cocktailDTOList.stream().map(CocktailDTO::getIdDrink).toArray(Integer[]::new);
+       List<LiaisonBarCocktail> barCocktail = barCocktailRepository.findByCocktailIds(cocktailIds);
+       for(int j = 0; j < barCocktail.size(); j++) {
+           BarDTO bar = new BarDTO();
+           bar.setBarId(barCocktail.get(j).getBarId());
+           barDTOList.add(bar);
        }
-       ArrayList<BarDTO> tempRep = new ArrayList<>();
-       return tempRep;
+       return barDTOList;
     }
 
-    public List<CocktailDTO> getCocktailsIdByName(String cocktailName)
+    public List<CocktailDTO> getCocktailsByName(String cocktailName)
     {
-        ResponseEntity<List<CocktailDTO>> response
-                = concentrateurApiClient.call("/cocktail/" + cocktailName, List.class);
-        return response.getBody() == null ? new ArrayList<>() : response.getBody();
+        CocktailDTO[] response
+                = concentrateurApiClient.call("/cocktail/" + cocktailName, CocktailDTO[].class);
+        return new ArrayList<>(Arrays.asList(response));
     }
 }

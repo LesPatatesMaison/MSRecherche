@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CocktailDTO implements Serializable {
-    private Integer idDrink;
+public class CocktailDTO {
+    private int idDrink;
     private String strDrink;
     private String strInstructionsFR;
     private String strDrinkThumb;
