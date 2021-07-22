@@ -34,7 +34,6 @@ public class BarController {
         return barService.getBarList();
     }
 
-
     @ApiParam(name = "{id}", required = true)
     @ApiOperation(value = "Voir un bar", response = BarDTO.class)
     @ApiResponses(value = {
@@ -54,7 +53,7 @@ public class BarController {
     })
     @GetMapping("/search")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<BarDTO> searchOrders(@RequestParam(value = "name", required = false) String name) throws APIException {
+    public List<BarDTO> findBarByName(@RequestParam(value = "name", required = true) String name) throws APIException {
         return barService.findBarByName(name);
     }
 
