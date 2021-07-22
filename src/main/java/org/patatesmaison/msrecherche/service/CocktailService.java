@@ -21,6 +21,11 @@ import java.util.List;
 public class CocktailService {
     private final ConcentrateurApiClient concentrateurApiClient;
 
+    public CocktailDTO getCocktailById(Long cocktailId)
+    {
+        return concentrateurApiClient.getCocktailById(cocktailId);
+    }
+
     public List<CocktailDTO> getCocktailsByName(String cocktailName)
     {
         return concentrateurApiClient.findCocktailsByName(cocktailName);

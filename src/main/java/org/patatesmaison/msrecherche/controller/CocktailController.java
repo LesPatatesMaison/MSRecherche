@@ -27,6 +27,17 @@ public class CocktailController {
 
     private final BarCocktailService barCocktailService;
 
+    @ApiParam(name = "{cocktailId}", required = true)
+    @ApiOperation(value = "Rechercher un cocktail par son id", response = CocktailDTO.class)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cocktail détaillé"),
+    })
+    @GetMapping("/{cocktailId}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public CocktailDTO getCocktailById(@PathVariable("cocktailId") Long cocktailId) throws APIException {
+        return cocktailService.getCocktailById(cocktailId);
+    }
+
     @ApiOperation(value = "Recherche de cocktails par propriété", response = CocktailDTO[].class)
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Liste des cocktails correspondant"),
