@@ -36,6 +36,7 @@ public class Test {
     @ResponseStatus(code = HttpStatus.OK)
     public ArrayList<BarDTO> test() {
         log.warn("-------------- Test Recherche OK");
+
         return barCocktailService.getBarByCocktailName("margarita");
     }
 

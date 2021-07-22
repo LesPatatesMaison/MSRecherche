@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.patatesmaison.msrecherche.util.Logging;
 
 import java.io.Serializable;
 
@@ -46,4 +47,9 @@ public class CocktailDTO {
     private String strMeasure13;
     private String strMeasure14;
     private String strMeasure15;
+
+    @Override
+    public String toString() {
+        return Logging.toStringNotNull(this);
+    }
 }
