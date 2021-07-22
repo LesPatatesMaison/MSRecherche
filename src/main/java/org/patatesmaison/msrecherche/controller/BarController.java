@@ -46,6 +46,17 @@ public class BarController {
         return barService.getBarById(id);
     }
 
+    @ApiParam(name = "{cocktailName}", required = true)
+    @ApiOperation(value = "Rec hercher les bars proposant un cocktail", response = BarDTO[].class)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Liste des bars (potentiellement vide)"),
+    })
+    @GetMapping("/cocktail/{cocktailName}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<BarDTO> getBarListByCocktailName(@PathVariable("cocktailName") String cocktailName) throws APIException {
+        return barService.getBarListByCocktailName(cocktailName);
+    }
+
     @ApiOperation(value = "Recherche de bar par nom", response = BarDTO.class)
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Bar(s) trouvé(s)"),

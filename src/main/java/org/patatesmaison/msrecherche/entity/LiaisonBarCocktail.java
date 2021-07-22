@@ -15,12 +15,12 @@ import javax.persistence.*;
 @Setter
 public class LiaisonBarCocktail {
     @Id
-    private Integer barId;
+    private Long barId;
 
     @Id
-    private Integer cocktailId;
+    private Long cocktailId;
 
-    public LiaisonBarCocktail(Integer barId, Integer cocktailId)
+    public LiaisonBarCocktail(Long barId, Long cocktailId)
     {
         this.barId = barId;
         this.cocktailId = cocktailId;

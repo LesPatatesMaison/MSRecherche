@@ -10,7 +10,7 @@ import org.patatesmaison.msrecherche.util.Logging;
 @NoArgsConstructor
 public class BarDTO {
 
-    private int id;
+    private Long id;
 
     private String name;
 

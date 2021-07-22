@@ -6,7 +6,6 @@ import org.patatesmaison.msrecherche.dto.BarDTO;
 import org.patatesmaison.msrecherche.dto.CocktailDTO;
 import org.patatesmaison.msrecherche.exception.APIException;
 import org.patatesmaison.msrecherche.exception.ErrorMessage;
-import org.patatesmaison.msrecherche.service.BarCocktailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +20,6 @@ import java.util.List;
 @Slf4j
 public class Test {
 
-    @Autowired
-    private BarCocktailService barCocktailService;
-
     @PostConstruct
     public void logEnvSpecificValue() {
 //        log.warn("---------------------------------------------");
@@ -34,10 +30,8 @@ public class Test {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public ArrayList<BarDTO> test() {
+    public void test() {
         log.warn("-------------- Test Recherche OK");
-
-        return barCocktailService.getBarByCocktailName("margarita");
     }
 
 

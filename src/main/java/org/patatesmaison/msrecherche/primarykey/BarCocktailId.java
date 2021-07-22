@@ -7,10 +7,10 @@ import java.util.Objects;
 
 @NoArgsConstructor
 public class BarCocktailId implements Serializable {
-    private Integer barId;
-    private Integer cocktailId;
+    private Long barId;
+    private Long cocktailId;
 
-    public BarCocktailId(Integer barId, Integer cocktailId) {
+    public BarCocktailId(Long barId, Long cocktailId) {
         this.barId = barId;
         this.cocktailId = cocktailId;
     }

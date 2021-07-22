@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface LiaisonBarCocktailRepository extends JpaRepository<LiaisonBarCocktail, Integer> {
-    List<LiaisonBarCocktail> findByCocktailId(int cocktailId);
+    List<LiaisonBarCocktail> findByCocktailId(Long cocktailId);
 
-    @Query("SELECT bc FROM LiaisonBarCocktail bc WHERE bc.cocktailId IN (?1)")
-    List<LiaisonBarCocktail> findByCocktailIds(Integer[] cocktailIds);
+    @Query("SELECT DISTINCT bc.barId FROM LiaisonBarCocktail bc WHERE bc.cocktailId IN (?1)")
+    List<Long> findBarIdsByCocktailIds(List<Long> cocktailIds);
 }
