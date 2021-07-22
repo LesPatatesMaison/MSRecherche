@@ -14,4 +14,7 @@ public interface LiaisonBarCocktailRepository extends JpaRepository<LiaisonBarCo
 
     @Query("SELECT DISTINCT bc.barId FROM LiaisonBarCocktail bc WHERE bc.cocktailId IN (?1)")
     List<Long> findBarIdsByCocktailIds(List<Long> cocktailIds);
+
+    @Query("SELECT bc.cocktailId FROM LiaisonBarCocktail bc WHERE bc.barId = ?1")
+    List<Long> findCocktailIdsByBarId(Long barId);
 }
