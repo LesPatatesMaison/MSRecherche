@@ -21,4 +21,9 @@ public class CocktailService {
     {
         return concentrateurApiClient.findCocktailsByName(cocktailName);
     }
+
+    public List<CocktailDTO> getCocktailsByIngredient(String ingredient)
+    {
+        return concentrateurApiClient.findCocktailsByIngredient(ingredient);
+    }
 }

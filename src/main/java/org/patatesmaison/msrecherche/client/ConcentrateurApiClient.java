@@ -56,4 +56,8 @@ public class ConcentrateurApiClient {
         return cocktailDTOArray == null ? new ArrayList<>() : Arrays.asList(cocktailDTOArray);
     }
 
+    public List<CocktailDTO> findCocktailsByIngredient(String ingredient) {
+        CocktailDTO[] cocktailDTOArray = this.restTemplate.getForObject(String.format("%s/%s", routeCocktail, ingredient), CocktailDTO[].class);
+        return cocktailDTOArray == null ? new ArrayList<>() : Arrays.asList(cocktailDTOArray);
+    }
 }
