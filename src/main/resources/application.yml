@@ -5,3 +5,10 @@ spring:
     config:
       uri: http://localhost:8888
 
+resource-base-url: http://localhost:8020
+
+messages:
+  bar:
+    not-found : "Aucun bar correspondant à votre rechcerche"
+  cocktail:
+    not-found : "Aucun cocktail correspondant à votre rechcerche"
