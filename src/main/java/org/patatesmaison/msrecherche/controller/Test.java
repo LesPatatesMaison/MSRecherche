@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,8 @@ public class Test {
     @ResponseStatus(code = HttpStatus.OK)
     public List<CocktailDTO> test() {
         log.warn("-------------- Test Recherche OK");
-        return barCocktailService.testAPI();
+        return new ArrayList<>();
+//        return barCocktailService.testAPI();
     }
 
 

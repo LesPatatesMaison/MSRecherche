@@ -7,6 +7,12 @@ spring:
 
 resource-base-url: http://localhost:8020
 
+concentrateur:
+  url:
+    base: http://localhost:8020
+    bar: ${concentrateur.url.base}/etablissement
+    cocktail: ${concentrateur.url.base}/cocktail
+
 messages:
   bar:
     not-found : "Aucun bar correspondant à votre rechcerche"

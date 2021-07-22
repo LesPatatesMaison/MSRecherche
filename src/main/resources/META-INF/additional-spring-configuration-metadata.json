@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "concentrateur.url.base",
+      "type": "java.lang.String",
+      "description": "Description for concentrateur.url.base."
+    },
+    {
+      "name": "concentrateur.url.bar",
+      "type": "java.lang.String",
+      "description": "Description for concentrateur.url.bar."
+    },
+    {
+      "name": "concentrateur.url.cocktail",
+      "type": "java.lang.String",
+      "description": "Description for concentrateur.url.cocktail."
+    }
+  ] }
