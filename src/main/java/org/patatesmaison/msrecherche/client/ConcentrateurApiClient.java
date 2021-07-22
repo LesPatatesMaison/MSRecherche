@@ -29,7 +29,7 @@ public class ConcentrateurApiClient {
     @Value("${concentrateur.url.bar.id}")
     private String barIdUlr;
 
-    @Value("${concentrateur.route.cocktail}")
+    @Value("${concentrateur.url.cocktail}")
     private String routeCocktail;
 
     public <T> T call(String endpoint, Class<T> objectClass) {

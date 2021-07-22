@@ -39,7 +39,7 @@ public class BarCocktailService {
        List<LiaisonBarCocktail> barCocktail = barCocktailRepository.findByCocktailIds(cocktailIds);
        for(int j = 0; j < barCocktail.size(); j++) {
            BarDTO bar = new BarDTO();
-           bar.setBarId(barCocktail.get(j).getBarId());
+           bar.setId(barCocktail.get(j).getBarId());
            barDTOList.add(bar);
        }
        return barDTOList;
