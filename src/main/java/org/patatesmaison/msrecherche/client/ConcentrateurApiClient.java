@@ -20,14 +20,8 @@ public class ConcentrateurApiClient {
     @Value("${resource-base-url}")
     private String resourceBaseUrl;
 
-    @Value("${concentrateur.url.bar.search}")
-    private String barSearchUlr;
-
-    @Value("${concentrateur.url.bar.list}")
-    private String barListUlr;
-
-    @Value("${concentrateur.url.bar.id}")
-    private String barIdUlr;
+    @Value("${concentrateur.url.bar}")
+    private String routeBar;
 
     @Value("${concentrateur.url.cocktail}")
     private String routeCocktail;
@@ -38,16 +32,16 @@ public class ConcentrateurApiClient {
     }
 
     public BarDTO getBarById(Long barId) {
-        return this.restTemplate.getForObject(String.format("%s/%d", barIdUlr, barId), BarDTO.class);
+        return this.restTemplate.getForObject(String.format("%s/%d", routeBar, barId), BarDTO.class);
     }
 
     public List<BarDTO> findBarByName(String barName) {
-        BarDTO[] barDTOArray = this.restTemplate.getForObject(String.format("%s?%s", barSearchUlr, barName), BarDTO[].class);
+        BarDTO[] barDTOArray = this.restTemplate.getForObject(String.format("%s/search?name=%s", routeBar, barName), BarDTO[].class);
         return barDTOArray == null ? new ArrayList<>() : Arrays.asList(barDTOArray);
     }
 
     public List<BarDTO> getBarList() {
-        BarDTO[] barDTOArray = this.restTemplate.getForObject(barListUlr, BarDTO[].class);
+        BarDTO[] barDTOArray = this.restTemplate.getForObject(routeBar, BarDTO[].class);
         return barDTOArray == null ? new ArrayList<>() : Arrays.asList(barDTOArray);
     }
 
