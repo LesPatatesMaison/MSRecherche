@@ -67,6 +67,9 @@ public class BarController {
         if(allRequestParams.containsKey("cocktail")) {
             return barCocktailService.getBarListByCocktailName(allRequestParams.get("cocktail"));
         }
+        if(allRequestParams.containsKey("cocktailId")) {
+            return barCocktailService.getBarListByCocktailId(allRequestParams.get("cocktailId"));
+        }
         throw new APIException("Veuillez saisir UN paramètre parmi name et cocktail", HttpStatus.BAD_REQUEST);
     }
 

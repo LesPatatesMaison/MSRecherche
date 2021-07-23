@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,22 @@ public class BarCocktailService {
         List<CocktailDTO> cocktailDTOList = cocktailService.getCocktailsByName(cocktailName);
         List<Long> cocktailIds = cocktailDTOList.stream().map(CocktailDTO::getIdDrink).collect(Collectors.toList());
         List<Long> barIds = barCocktailRepository.findBarIdsByCocktailIds(cocktailIds);
+        for (Long barId : barIds) {
+            try {
+                BarDTO bar = concentrateurApiClient.getBarById(barId);
+                barDTOList.add(bar);
+            } catch(RestClientException e) {
+                log.warn("L'établissement d'id {} n'a pas pu être trouvé", barId);
+            }
+        }
+        return barDTOList;
+    }
+
+    public ArrayList<BarDTO> getBarListByCocktailId(String cocktailId) {
+        ArrayList<BarDTO> barDTOList = new ArrayList<>();
+
+        CocktailDTO cocktailDTO = cocktailService.getCocktailById(Long.valueOf(cocktailId));
+        List<Long> barIds = barCocktailRepository.findBarIdsByCocktailId(cocktailDTO.getIdDrink());
         for (Long barId : barIds) {
             try {
                 BarDTO bar = concentrateurApiClient.getBarById(barId);
